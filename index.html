@@ -5,220 +5,818 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quotation - Vittam Integrity Services</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
   
-    :root {
-      --gradient-bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --accent: #00ffd5;
-      --accent-light: #66ffe8;
-      --text-main: #e0f7fa;
-      --text-soft: #a0cfd0;
-    }
+  :root {
+    --gradient-bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --accent: #00ffd5;
+    --accent-light: #66ffe8;
+    --text-main: #e0f7fa;
+    --text-soft: #a0cfd0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--gradient-bg);
+    color: var(--text-main);
+    padding: 2rem;
+    line-height: 1.7;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    box-shadow: 0 0 40px rgba(0, 255, 213, 0.1);
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  h1, h2 {
+    color: var(--accent-light);
+  }
+
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(90deg, #00ffd5, #00bcd4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li::before {
+    content: "✓";
+    margin-right: 10px;
+    color: var(--accent);
+  }
+
+  .pricing-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0, 255, 213, 0.08);
+    transition: transform 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 28px rgba(0, 255, 213, 0.2);
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: radial-gradient(circle at center, rgba(0, 255, 213, 0.1), transparent);
+    opacity: 0.15;
+    animation: rotateGlow 10s linear infinite;
+    z-index: 0;
+  }
+
+  .card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    z-index: 1;
+    position: relative;
+  }
+
+  .price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent-light);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .strike {
+    text-decoration: line-through;
+    color: #999;
+  }
+
+  .note {
+    background: rgba(0, 255, 213, 0.1);
+    border-left: 4px solid var(--accent);
+    padding: 1rem;
+    border-radius: 12px;
+    font-style: italic;
+    color: var(--text-soft);
+    margin-top: 1.5rem;
+  }
+
+  .cta {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    background: linear-gradient(90deg, #00ffd5, #00bcd4);
+    color: #000;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 255, 213, 0.25);
+    font-weight: bold;
+    animation: pulse 2s infinite;
+  }
+
+  .portfolio-showcase {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-top: 1rem;
+  }
+
+  .portfolio-showcase img {
+    width: 260px;
+    height: 160px;
+    border-radius: 14px;
+    object-fit: cover;
+    scroll-snap-align: start;
+    animation: fadeInUp 1s ease forwards;
+    flex-shrink: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  @keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  iframe {
+    width: 560px;
+    height: 315px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  .glowing-text {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-shadow: 0 0 5px #0f2027, 0 0 10px #0f2027, 0 0 20px #0f2027, 0 0 40px #00bcd4, 0 0 80px #00bcd4, 0 0 90px #00bcd4;
+  }
+
+  .email-link, .download-link {
+    display: inline-block;
+    margin: 10px auto;
+    text-decoration: none;
+    background-color: #2c5364;
+    color: #FEF5EC;
+    padding: 10px 15px;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1 style="text-align:center; font-size:2.5rem;">Quotation 1: Static HTML Website</h1>
+  <div class="container">
+  <h1>Web Development Quotation</h1>
+<!--  <div class="video-container">
+  <section>
+    <iframe width="560" height="315" 
+src="https://www.youtube.com/embed/VIDEO_ID" 
+title="YouTube video player" 
+frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+allowfullscreen>
+</iframe>
+    </section>
+    </div> -->
+  <section>
+    <h2>📌 Project Scope</h2>
+    <ul>
+      <li>Create unique brand identity for   <i>
+        Vittam Integrity Services</i></li>
+      <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- Brand is presenting itself into International space. </p> 
+      <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- Brand is ready to assert professional impression to executive class, corporates & individuals.</p> 
+      <li>Design mobile responsive UI</li>
+      <li>Build static HTML5 website</li>
+      <li>Design assets for major social platforms</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📦 Deliverables</h2>
+    <ul>
+      <li>Logo, color palette, typography, design guidelines</li>
+      <li>Home + inner page designs</li>
+      <li>HTML/CSS responsive build</li>
+      <li>Facebook, Twitter, IG, LinkedIn banners</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📊 Pricing Breakdown</h2>
+    <div class="pricing-comparison">
+      <div class="card">
+        <h3>Brand Identity</h3>
+        <div class="price">₹20,000</div>
+        <p>Logo, typography, color scheme, brand style guide</p>
+      </div>
+      <div class="card">
+        <h3>UI Design</h3>
+        <div class="price">₹25,000</div>
+        <p>Home + inner page designs, mobile responsiveness</p>
+      </div>
+      <div class="card">
+        <h3>HTML Website</h3>
+        <div class="price">₹40,000</div>
+        <p>Static responsive HTML/CSS pages, optimized performance</p>
+      </div>
+      <div class="card">
+        <h3>Social Media Assets</h3>
+        <div class="price">₹5,000</div>
+        <p>Banner assets for FB, IG, LinkedIn, Twitter</p>
+      </div>
+      <div class="card">
+        <h3>Web Hosting</h3>
+
+        <div class="price strike"> 
+₹16,000 to ₹30,000 per year</div>
+
+        <div class="price">₹0</div>
+        <p>We offer free website hosting</p>
+      </div>
+      <div class="card">
+        <h3>SSL Certificate</h3>
+        <div class="price strike">₹3,000</div>
+        <div class="price">₹0</div>
+        <p>SSL certification that build trust & secuirity is offered as free</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>� Price Comparison</h2>
+    <div class="pricing-comparison">
+      <div class="card">
+        <h3>Industry Average</h3>
+        <div class="price strike">₹175,000</div>
+        <p>Agencies typically charge this range for a similar scope.</p>
+      </div>
+      <div class="card">
+        <h3>Our Quotation</h3>
+        <div class="price">₹89,999</div>
+        <p>Premium quality at a competitive, fair price.</p>
+      </div>
+    </div>
+    <div class="note">
+      Save over ₹85,000 and get stunning design from an experienced team who cares about your brand.
+    </div>
+  </section>
+  <section>
+    <h2>�💳 Payment Terms</h2>
+    <ul>
+      <li>30% upfront to begin the project</li>
+      <li>40% after brand + UI design phase</li>
+      <li>30% on final delivery</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>✨ Portfolio Showcase</h2>
+    <div class="portfolio-showcase">
+      
+
+      <a href="https://billgogo.in/" target="_blank">
+        <img src="https://mina-bill.s3.ap-south-1.amazonaws.com/media/public/billgogo.png" alt="Logo Design" style="max-width: 200px; max-height: 100px; width: auto; height: auto;">
+      </a>
+       
+      <a href="https://levavivah.com" target="_blank">
+        <img src="https://matmon.s3.ap-south-1.amazonaws.com/logo/HL.png" alt="Logo Design" style="max-width: 200px; max-height: 100px; width: auto; height: auto;">
+      </a>
+      <a href="https://www.figma.com/design/wbgRezeIHrTkk9hHlMk8Df/scan2lab?node-id=707-683&p=f&t=vyzGAmIehUWuOiMr-0" target="_blank">
+        <img src="https://mina-bill.s3.ap-south-1.amazonaws.com/media/public/scan2lab.png" alt="Logo Design" style="max-width: 200px; max-height: 100px; width: auto; height: auto;">
+      </a>
+
+      <a href="https://www.figma.com/design/ZcC3Z5FDREL0hL8xZh58ou/Farmer-s-App?node-id=84-988&t=7GIDCTrJjSLypwkG-1" target="_blank"></a>
+        <img src="https://mina-bill.s3.ap-south-1.amazonaws.com/media/public/farmerapp.png" alt="Logo Design" style="max-width: 200px; max-height: 100px; width: auto; height: auto;">
+      </a>
+      
+    </div>
+  </section>
+
+  <section>
+    <h2>✨ Why us?</h2>
+    <ul>
+      <li>Professional Design</li>
+      <li>Continued support</li>
+      <li>Free web hosting</li>
+      <li>Free SSL Certificate</li>
+    </ul>
+  </section>
+  <div class="cta">
+    Ready to elevate your brand? <br />
+    Confirm your quote & let's get started 🚀<br /><br />
   
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Email Link -->
+    <a href="mailto:contact@thingslab.io?subject=Quote Confirmation&body=Hi, I’d like to confirm the quote." class="email-link">
+      📧 Send Confirmation Email
+    </a><br /><br />
   
+    <!-- Download Link to Attachment -->
+    <a href="index.pdf" download class="download-link">
+      📎 Download Quote PDF
+    </a>
+  </div>
+</div>
+  <hr style="margin: 4rem 0; border: 2px dashed #66ffe8;" />
+  <h1 style="text-align:center; font-size:2.5rem;">Quotation 2: Next.js Website with Backend</h1>
+  <div class="container">
+  <h1>Web Development Quotation</h1>
+<!--  <div class="video-container">
+  <section>
+    <iframe width="560" height="315" 
+src="https://www.youtube.com/embed/VIDEO_ID" 
+title="YouTube video player" 
+frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+allowfullscreen>
+</iframe>
+    </section>
+    </div> -->
+  <section>
+    <h2>📌 Project Scope</h2>
+    <ul>
+      <li>Create unique brand identity for   <i>
+        Vittam Integrity Services</i></li>
+      <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- Brand is presenting itself into International space. </p> 
+      <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- Brand is ready to assert professional impression to executive class, corporates & individuals.</p> 
+      <li>Design mobile responsive UI</li>
+      <li>Build dynamic nextjs website (SEO friendly)</li>
+      <li>Build backend for blogging support</li>
+      <li>Design assets for major social platforms</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📦 Deliverables</h2>
+    <ul>
+      <li>Logo, color palette, typography, design guidelines</li>
+      <li>Home + inner page designs</li>
+      <li>HTML/CSS responsive build</li>
+      <li>SEO friendly nextjs website</li>
+      <li>Facebook, Twitter, IG, LinkedIn banners</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📊 Pricing Breakdown</h2>
+    <div class="pricing-comparison">
+      <div class="card">
+        <h3>Brand Identity</h3>
+        <div class="price">₹20,000</div>
+        <p>Logo, typography, color scheme, brand style guide</p>
+      </div>
+      <div class="card">
+        <h3>UI Design</h3>
+        <div class="price">₹25,000</div>
+        <p>Home + inner page designs, mobile responsiveness</p>
+      </div>
+      <div class="card">
+        <h3>NextJS Website with backend</h3>
+        <div class="price">₹75,000</div>
+        <p>Static responsive HTML/CSS pages, optimized performance</p>
+      </div>
+      <div class="card">
+        <h3>Social Media Assets</h3>
+        <div class="price">₹5,000</div>
+        <p>Banner assets for FB, IG, LinkedIn, Twitter</p>
+      </div>
+      <div class="card">
+        <h3>Web Hosting & maintainance</h3>
+        <div class="price"> ₹16,000 per year</div>
+        <p>We competitive website hosting</p>
+      </div>
+      <div class="card">
+        <h3>SSL Certificate</h3>
+        <div class="price strike">₹3,000</div>
+        <div class="price">₹0</div>
+        <p>SSL certification that build trust & secuirity is offered as free</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>� Price Comparison</h2>
+    <div class="pricing-comparison">
+      <div class="card">
+        <h3>Industry Average</h3>
+        <div class="price strike">₹240,000</div>
+        <p>Agencies typically charge this range for a similar scope.</p>
+      </div>
+      <div class="card">
+        <h3>Our Quotation</h3>
+        <div class="price">₹140,999</div>
+        <p>Premium quality at a competitive, fair price.</p>
+      </div>
+    </div>
+    <div class="note">
+      Save over ₹99,000 and get stunning design from an experienced team who cares about your brand.
+    </div>
+  </section>
+  <section>
+    <h2>�💳 Payment Terms</h2>
+    <ul>
+      <li>30% upfront to begin the project</li>
+      <li>40% after brand + UI design phase</li>
+      <li>30% on final delivery</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>✨ Portfolio Showcase</h2>
+    <div class="portfolio-showcase">
+      
+
+      <a href="https://billgogo.in/" target="_blank">
+        <img src="https://mina-bill.s3.ap-south-1.amazonaws.com/media/public/billgogo.png" alt="Logo Design" style="max-width: 200px; max-height: 100px; width: auto; height: auto;">
+      </a>
+       
+      <a href="https://levavivah.com" target="_blank">
+        <img src="https://matmon.s3.ap-south-1.amazonaws.com/logo/HL.png" alt="Logo Design" style="max-width: 200px; max-height: 100px; width: auto; height: auto;">
+      </a>
+      <a href="https://www.figma.com/design/wbgRezeIHrTkk9hHlMk8Df/scan2lab?node-id=707-683&p=f&t=vyzGAmIehUWuOiMr-0" target="_blank">
+        <img src="https://mina-bill.s3.ap-south-1.amazonaws.com/media/public/scan2lab.png" alt="Logo Design" style="max-width: 200px; max-height: 100px; width: auto; height: auto;">
+      </a>
+
+      <a href="https://www.figma.com/design/ZcC3Z5FDREL0hL8xZh58ou/Farmer-s-App?node-id=84-988&t=7GIDCTrJjSLypwkG-1" target="_blank"></a>
+        <img src="https://mina-bill.s3.ap-south-1.amazonaws.com/media/public/farmerapp.png" alt="Logo Design" style="max-width: 200px; max-height: 100px; width: auto; height: auto;">
+      </a>
+      
+    </div>
+  </section>
+
+  <section>
+    <h2>✨ Why us?</h2>
+    <ul>
+      <li>Professional Design</li>
+      <li>Continued support</li>
+      <li>SEO friendly website</li>
+      <li>Free SSL Certificate</li>
+    </ul>
+  </section>
+  <div class="cta">
+    Ready to elevate your brand? <br />
+    Confirm your quote & let's get started 🚀<br /><br />
+  
+    <!-- Email Link -->
+    <a href="mailto:contact@thingslab.io?subject=Quote Confirmation&body=Hi, I’d like to confirm the quote." class="email-link">
+      📧 Send Confirmation Email
+    </a><br /><br />
+  
+    <!-- Download Link to Attachment -->
+    <a href="index.pdf" download class="download-link">
+      📎 Download Quote PDF
+    </a>
+  </div>
+</div>
+</div>
+</body>
+</html>
+
+
+ChatGPT said:
+Here's the modified HTML code with responsive styling adjustments for mobile devices:
+
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Quotation - Vittam Integrity Services</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+  :root {
+    --gradient-bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --accent: #00ffd5;
+    --accent-light: #66ffe8;
+    --text-main: #e0f7fa;
+    --text-soft: #a0cfd0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--gradient-bg);
+    color: var(--text-main);
+    padding: 2rem;
+    line-height: 1.7;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    box-shadow: 0 0 40px rgba(0, 255, 213, 0.1);
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  h1, h2 {
+    color: var(--accent-light);
+  }
+
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(90deg, #00ffd5, #00bcd4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li::before {
+    content: "✓";
+    margin-right: 10px;
+    color: var(--accent);
+  }
+
+  .pricing-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0, 255, 213, 0.08);
+    transition: transform 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 28px rgba(0, 255, 213, 0.2);
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: radial-gradient(circle at center, rgba(0, 255, 213, 0.1), transparent);
+    opacity: 0.15;
+    animation: rotateGlow 10s linear infinite;
+    z-index: 0;
+  }
+
+  .card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    z-index: 1;
+    position: relative;
+  }
+
+  .price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent-light);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .strike {
+    text-decoration: line-through;
+    color: #999;
+  }
+
+  .note {
+    background: rgba(0, 255, 213, 0.1);
+    border-left: 4px solid var(--accent);
+    padding: 1rem;
+    border-radius: 12px;
+    font-style: italic;
+    color: var(--text-soft);
+    margin-top: 1.5rem;
+  }
+
+  .cta {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    background: linear-gradient(90deg, #00ffd5, #00bcd4);
+    color: #000;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 255, 213, 0.25);
+    font-weight: bold;
+    animation: pulse 2s infinite;
+  }
+
+  .portfolio-showcase {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-top: 1rem;
+  }
+
+  .portfolio-showcase img {
+    width: 260px;
+    height: 160px;
+    border-radius: 14px;
+    object-fit: cover;
+    scroll-snap-align: start;
+    animation: fadeInUp 1s ease forwards;
+    flex-shrink: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  @keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  .glowing-text {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-shadow: 0 0 5px #0f2027, 0 0 10px #0f2027, 0 0 20px #0f2027, 0 0 40px #00bcd4, 0 0 80px #00bcd4, 0 0 90px #00bcd4;
+  }
+
+  .email-link, .download-link {
+    display: inline-block;
+    margin: 10px auto;
+    text-decoration: none;
+    background-color: #2c5364;
+    color: #FEF5EC;
+    padding: 10px 15px;
+    border-radius: 8px;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--gradient-bg);
-      color: var(--text-main);
-      padding: 2rem;
-      line-height: 1.7;
-    }
-  
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 2rem;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      background: var(--glass-bg);
-      box-shadow: 0 0 40px rgba(0, 255, 213, 0.1);
-      animation: fadeIn 1s ease-in-out;
-    }
-  
-    h1, h2 {
-      color: var(--accent-light);
-    }
-  
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      background: linear-gradient(90deg, #00ffd5, #00bcd4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  
-    section {
-      margin-bottom: 2.5rem;
-    }
-  
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-  
-    li::before {
-      content: "✓";
-      margin-right: 10px;
-      color: var(--accent);
-    }
-  
-    .pricing-comparison {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-  
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 1.5rem;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 24px rgba(0, 255, 213, 0.08);
-      transition: transform 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-  
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 28px rgba(0, 255, 213, 0.2);
-    }
-  
-    .card::after {
-      content: "";
-      position: absolute;
-      top: -30%;
-      left: -30%;
-      width: 160%;
-      height: 160%;
-      background: radial-gradient(circle at center, rgba(0, 255, 213, 0.1), transparent);
-      opacity: 0.15;
-      animation: rotateGlow 10s linear infinite;
-      z-index: 0;
-    }
-  
-    .card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-      z-index: 1;
-      position: relative;
-    }
-  
-    .price {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--accent-light);
-      margin-bottom: 0.5rem;
-      position: relative;
-      z-index: 1;
-    }
-  
-    .strike {
-      text-decoration: line-through;
-      color: #999;
-    }
-  
-    .note {
-      background: rgba(0, 255, 213, 0.1);
-      border-left: 4px solid var(--accent);
       padding: 1rem;
-      border-radius: 12px;
-      font-style: italic;
-      color: var(--text-soft);
-      margin-top: 1.5rem;
     }
-  
-    .cta {
-      text-align: center;
-      font-size: 1.3rem;
-      margin-top: 2rem;
-      background: linear-gradient(90deg, #00ffd5, #00bcd4);
-      color: #000;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0, 255, 213, 0.25);
-      font-weight: bold;
-      animation: pulse 2s infinite;
+
+    h1 {
+      font-size: 2rem;
     }
-  
+
+    .container {
+      padding: 1rem;
+    }
+
+    .pricing-comparison {
+      grid-template-columns: 1fr;
+    }
+
     .portfolio-showcase {
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      margin-top: 1rem;
-    }
-  
-    .portfolio-showcase img {
-      width: 260px;
-      height: 160px;
-      border-radius: 14px;
-      object-fit: cover;
-      scroll-snap-align: start;
-      animation: fadeInUp 1s ease forwards;
-      flex-shrink: 0;
-    }
-  
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-    }
-  
-    @keyframes rotateGlow {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  
-    .video-container {
-      display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding: 2rem;
     }
-  
+
+    .portfolio-showcase img {
+      max-width: 100%;
+      height: auto;
+    }
+
     iframe {
-      width: 560px;
-      height: 315px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      max-width: 100%;
+      height: auto;
     }
-  
-    .glowing-text {
-      font-family: 'Arial', sans-serif;
+
+    .cta {
+      font-size: 1.1rem;
+      padding: 1rem;
+    }
+
+    .card {
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
       font-size: 1.5rem;
-      color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      text-shadow: 0 0 5px #0f2027, 0 0 10px #0f2027, 0 0 20px #0f2027, 0 0 40px #00bcd4, 0 0 80px #00bcd4, 0 0 90px #00bcd4;
     }
-  
-    .email-link, .download-link {
-      display: inline-block;
-      margin: 10px auto;
-      text-decoration: none;
-      background-color: #2c5364;
-      color: #FEF5EC;
-      padding: 10px 15px;
-      border-radius: 8px;
+
+    .cta {
+      font-size: 1rem;
+      padding: 0.8rem;
     }
+
+    .card {
+      padding: 0.8rem;
+    }
+  }
   </style>
 </head>
 <body>
